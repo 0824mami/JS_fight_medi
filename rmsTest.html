@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="background-color: #765e5e;">
+    <a href="##"><img src="svg/moving-outline.svg" alt="ロゴ写真"></a>
+    </div>
+    <div class="hamMenu" style="color: #fff;">
+        <input type="checkbox" name="menu_btn_check" id="menu_btn_check">
+        <label for="menu_btn_check" class="menu_btn"><span></span></label>
+    </div>
+    <div class="menuArea">
+        <nav class="menuNav" id="js_globalNav" style="display: none; background-color: #000;
+            color: #fff;
+            display: none;
+            margin-right: 80px;
+            z-index: 99;
+            position: absolute;
+            top: 58px;
+            left: 0px;">
+            <ul class="floatList">
+                <li><a href="#">TOP</a></li>
+                <li><a href="#">スケジュール</a></li>
+                <li><a href="#">施設概要</a></li>
+                <li><a href="#">問い合わせ</a></li>
+            </ul>
+        </nav>
+        <!--  -->
+        .hamMenu {
+        color: #fff;
+        <!--  -->
+        }
+        .p_menuBtn {
+        font-family: "design_plus";
+        }
+        .p_menuBtn {
+        width: 60px;
+        height: 60px;
+        border: 0;
+        background: transparent;
+        line-height: 60px;
+        }
+        /* ここまで効いてない */
+        .floatList {
+        margin-top: 55px;
+        list-style: none;
+        background-color: #000;
+        }
+        .floatList a {
+        text-decoration: none;
+        color: #fff;
+        }
+        .floatList li {
+        padding-right: 8px;
+        }
+        .menuNav {
+        background-color: #000;
+        color: #fff;
+        display: none;
+        margin-right: 80px;
+        z-index: 99;
+        position: absolute;
+        top: 58px;
+        left: 0px;
+        <!--  -->
+        }
+        .menu_btn {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        height: 60px;
+        width: 60px;
+        justify-content: center;
+        align-items: center;
+        z-index: 90;
+        background-color: #000;
+        }
+        .menu_btn span,
+        .menu_btn span::before,
+        .menu_btn span::after {
+        content: '';
+        display: block;
+        height: 3px;
+        width: 25px;
+        border-radius: 3px;
+        background-color: #fff;
+        position: absolute;
+        }
+        .menu_btn span::before {
+        bottom: 8px;
+        }
+        .menu_btn span::after {
+        top: 8px;
+        }
+        /* */
+        #menu_btn_check:checked~.menu_btn span {
+        background-color: rgba(255, 255, 255, 0);
+        }
+        #menu_btn_check:checked~.menu_btn span::before {
+        bottom: 0;
+        transform: rotate(45deg);
+        }
+        #menu_btn_check:checked~.menu_btn span::after {
+        top: 0;
+        transform: rotate(-45deg);
+        }
+        #menu_btn_check {
+        display: none;
+        }
+    </div>
+</body>
+
+</html>

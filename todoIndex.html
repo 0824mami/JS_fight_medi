@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>ToDo</title>
+</head>
+
+<body>
+    <div class="DummyTodoArea">
+        <div class="inputArea">
+            <input id="addText" placeholder="NOT_TODOを入力">
+            <button id="add_btn">追加</button>
+        </div>
+
+        <div id="needToDoArea">
+            <p class="title">やらないことリストのすすめ</p>
+            <ul id="needToDo_list">
+            </ul>
+        </div>
+        <div id="doneArea">
+            <p class="title">代わりに得たものを思い浮かべよう〜</p>
+            <ul id="done_list">
+            </ul>
+        </div>
+        <script src="js/main.js"></script>
+    </div>
+    <script>
+        const onClickAdd = () => {
+            const inputText = document.getElementById("addText").value;
+            document.getElementById("addText").value = "";
+            // 未完了リストに追加
+            createNeedToDo(inputText);
+        }
+
+        const createNeedToDo = (todo) => {
+            const li = document.createElement("li");
+            const div = document.createElement("div");
+            div.className = "list_row";
+
+            const p = document.createElement("p");
+            p.className = "todoItem";
+            p.innerHTML = todo;
+
+            // 1完了ボタン生成
+            const doneButton = document.createElement("button")
+            doneButton.innerHTML = "できた";
+            doneButton.addEventListener("click", () => {
+                const moveTarget = doneButton.closest("li");
+                doneButton.nextElementSibling.remove();
+                doneButton.remove();
+                // ここの順番は一旦場所はそのままで、完了と削除を消し”戻す”に差し替える
+
+
+                const backButton = document.createElement("button");
+                backButton.innerText = ("戻す");
+                backButton.addEventListener("click", () => {
+                    // ToDoの内容を取得し、未完了リストに追加
+                    const todoText = backButton.previousElementSibling.innerText;
+                    createNeedToDo(todoText);
+                    backButton.closest("li").remove();
+                });
+
+
+                // 既存のDOMの要素を取得することで、それをappendChildするやり方
+                moveTarget.firstElementChild.appendChild(backButton);
+                document.getElementById("done_list").appendChild(moveTarget);
+
+            });
+            const deleteButton = document.createElement("button");
+            deleteButton.innerHTML = "削除";
+            deleteButton.addEventListener("click", () => {
+                const deleteTarget = deleteButton.closest("li");
+                document.getElementById("needToDo_list").removeChild(deleteTarget);
+            });
+
+
+            // 階層構造を小さいものから
+            div.appendChild(p);
+            div.appendChild(doneButton);
+            div.appendChild(deleteButton);
+            li.appendChild(div);
+
+            document.getElementById("needToDo_list").appendChild(li);
+
+        }
+        document.getElementById("add_btn").addEventListener("click", onClickAdd);
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Keyboard</title>
+    <style>
+        body,
+        html,
+        ul {
+            margin: 0;
+        }
+
+        .wrap {
+            background: #0F2027;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right,
+                    #2C5364,
+                    #203A43,
+                    #0F2027);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #2C5364, #203A43, #0F2027);
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .piano {
+            margin: 0 auto;
+            display: block;
+            width: 642px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .piano ul {
+            list-style: none;
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wk {
+            display: block;
+            width: 18px;
+            line-height: 215px;
+            height: 117px;
+            text-align: center;
+            border: 1px solid #999;
+            color: #808080;
+            background: #fff;
+            border-radius: 2px;
+
+            &:hover {
+                box-shadow: 0 0 4px 3px #ccc inset;
+            }
+        }
+
+        .bk {
+            margin-left: -6px;
+            width: 11px;
+            height: 70px;
+            background: #333;
+            color: #fff;
+            text-align: center;
+            border: 1px solid #333;
+            border-radius: 0 0 2px 2px;
+            float: left;
+            position: absolute;
+            top: 0px;
+            box-shadow:
+                0 0 4px 3px rgba(51, 51, 51, 0.4),
+                0 0 4px 3px rgba(0, 0, 0, 0.5) inset;
+
+            &:hover {
+                box-shadow:
+                    0 0 4px 3px rgba(51, 51, 51, 0.18),
+                    0 0 4px 3px rgba(0, 0, 0, 0.2) inset;
+            }
+        }
+
+        .text {
+            font-size: 5rem;
+            font-family: 'Inter', sans-serif;
+            color: #3c3c3c;
+            letter-spacing: 0.1em;
+        }
+
+        .note span {
+            display: block;
+            pointer-events: none;
+            font-size: 60px;
+
+            &.note1 {
+                animation: bound 3s infinite;
+                position: fixed;
+                bottom: 20%;
+                left: 20vw;
+                z-index: 2;
+            }
+
+            &.note2 {
+                animation: bound 4.5s infinite;
+                position: fixed;
+                top: 14%;
+                right: 20vw;
+                z-index: 2;
+            }
+        }
+
+        @keyframes bound {
+            0% {
+                transform: translateY(0);
+            }
+
+            5% {
+                transform: translateY(0);
+            }
+
+            10% {
+                transform: translateY(0);
+            }
+
+            20% {
+                transform: translateY(-25px);
+            }
+
+            25% {
+                transform: translateY(0);
+            }
+
+            30% {
+                transform: translateY(-15px);
+            }
+
+            50% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes move {
+            100% {
+                transform: translate3d(0, 0, 1px) rotate(360deg);
+            }
+        }
+
+        .background {
+            opacity: 0.3;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: #3e1e68;
+            overflow: hidden;
+        }
+
+        .background span {
+            width: 13vmin;
+            height: 13vmin;
+            border-radius: 13vmin;
+            backface-visibility: hidden;
+            position: absolute;
+            animation: move;
+            animation-duration: 34;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .background span:nth-child(0) {
+            color: #583c87;
+            top: 32%;
+            left: 99%;
+            animation-duration: 153s;
+            animation-delay: -155s;
+            transform-origin: -15vw -4vh;
+            box-shadow: 26vmin 0 3.3857138622937306vmin currentColor;
+        }
+
+        .background span:nth-child(1) {
+            color: #583c87;
+            top: 30%;
+            left: 16%;
+            animation-duration: 31s;
+            animation-delay: -90s;
+            transform-origin: -9vw 21vh;
+            box-shadow: -26vmin 0 4.039235053713444vmin currentColor;
+        }
+
+        .background span:nth-child(2) {
+            color: #583c87;
+            top: 51%;
+            left: 52%;
+            animation-duration: 61s;
+            animation-delay: -41s;
+            transform-origin: 10vw 22vh;
+            box-shadow: -26vmin 0 3.9257025645311416vmin currentColor;
+        }
+
+        .background span:nth-child(3) {
+            color: #ffacac;
+            top: 41%;
+            left: 71%;
+            animation-duration: 91s;
+            animation-delay: -155s;
+            transform-origin: 11vw -3vh;
+            box-shadow: 26vmin 0 3.6910994846110006vmin currentColor;
+        }
+
+        .background span:nth-child(4) {
+            color: #e45a84;
+            top: 90%;
+            left: 43%;
+            animation-duration: 60s;
+            animation-delay: -20s;
+            transform-origin: -16vw 14vh;
+            box-shadow: -26vmin 0 3.290161714955395vmin currentColor;
+        }
+
+        .background span:nth-child(5) {
+            color: #e45a84;
+            top: 97%;
+            left: 69%;
+            animation-duration: 62s;
+            animation-delay: -142s;
+            transform-origin: -7vw -19vh;
+            box-shadow: 26vmin 0 3.3001990667496486vmin currentColor;
+        }
+
+        .background span:nth-child(6) {
+            color: #ffacac;
+            top: 16%;
+            left: 59%;
+            animation-duration: 141s;
+            animation-delay: -156s;
+            transform-origin: 11vw -15vh;
+            box-shadow: -26vmin 0 3.301072660928841vmin currentColor;
+        }
+
+        .background span:nth-child(7) {
+            color: #ffacac;
+            top: 6%;
+            left: 57%;
+            animation-duration: 79s;
+            animation-delay: -51s;
+            transform-origin: 14vw 14vh;
+            box-shadow: -26vmin 0 3.5448799478788215vmin currentColor;
+        }
+
+        .background span:nth-child(8) {
+            color: #583c87;
+            top: 37%;
+            left: 26%;
+            animation-duration: 165s;
+            animation-delay: -143s;
+            transform-origin: 20vw 14vh;
+            box-shadow: -26vmin 0 3.5511113892052277vmin currentColor;
+        }
+
+        .background span:nth-child(9) {
+            color: #ffacac;
+            top: 15%;
+            left: 97%;
+            animation-duration: 9s;
+            animation-delay: -56s;
+            transform-origin: 19vw 1vh;
+            box-shadow: 26vmin 0 3.794548251574524vmin currentColor;
+        }
+
+        .background span:nth-child(10) {
+            color: #e45a84;
+            top: 80%;
+            left: 23%;
+            animation-duration: 69s;
+            animation-delay: -53s;
+            transform-origin: 6vw -21vh;
+            box-shadow: 26vmin 0 3.262185757922321vmin currentColor;
+        }
+
+        .background span:nth-child(11) {
+            color: #ffacac;
+            top: 12%;
+            left: 29%;
+            animation-duration: 76s;
+            animation-delay: -106s;
+            transform-origin: 0vw -5vh;
+            box-shadow: -26vmin 0 4.087831236328082vmin currentColor;
+        }
+
+        .background span:nth-child(12) {
+            color: #ffacac;
+            top: 81%;
+            left: 19%;
+            animation-duration: 83s;
+            animation-delay: -78s;
+            transform-origin: -21vw -24vh;
+            box-shadow: 26vmin 0 3.492183945121032vmin currentColor;
+        }
+
+        .background span:nth-child(13) {
+            color: #e45a84;
+            top: 86%;
+            left: 34%;
+            animation-duration: 148s;
+            animation-delay: -156s;
+            transform-origin: 17vw 25vh;
+            box-shadow: -26vmin 0 4.109462612611841vmin currentColor;
+        }
+
+        .background span:nth-child(14) {
+            color: #583c87;
+            top: 58%;
+            left: 65%;
+            animation-duration: 136s;
+            animation-delay: -62s;
+            transform-origin: -4vw -4vh;
+            box-shadow: 26vmin 0 3.9846608272813926vmin currentColor;
+        }
+
+        .background span:nth-child(15) {
+            color: #e45a84;
+            top: 15%;
+            left: 44%;
+            animation-duration: 136s;
+            animation-delay: -141s;
+            transform-origin: -3vw 6vh;
+            box-shadow: -26vmin 0 3.413438064417644vmin currentColor;
+        }
+
+        .background span:nth-child(16) {
+            color: #583c87;
+            top: 36%;
+            left: 59%;
+            animation-duration: 99s;
+            animation-delay: -119s;
+            transform-origin: 7vw 12vh;
+            box-shadow: -26vmin 0 3.8779602667187247vmin currentColor;
+        }
+
+        .background span:nth-child(17) {
+            color: #583c87;
+            top: 36%;
+            left: 94%;
+            animation-duration: 109s;
+            animation-delay: -141s;
+            transform-origin: -19vw 17vh;
+            box-shadow: -26vmin 0 4.1889343545669036vmin currentColor;
+        }
+
+        .background span:nth-child(18) {
+            color: #e45a84;
+            top: 9%;
+            left: 36%;
+            animation-duration: 62s;
+            animation-delay: -67s;
+            transform-origin: -7vw -8vh;
+            box-shadow: -26vmin 0 4.038482040922529vmin currentColor;
+        }
+
+        .background span:nth-child(19) {
+            color: #583c87;
+            top: 22%;
+            left: 13%;
+            animation-duration: 119s;
+            animation-delay: -149s;
+            transform-origin: -10vw 14vh;
+            box-shadow: -26vmin 0 3.252109712436279vmin currentColor;
+        }
+
+        .background span:nth-child(20) {
+            color: #583c87;
+            top: 75%;
+            left: 15%;
+            animation-duration: 144s;
+            animation-delay: -67s;
+            transform-origin: 12vw -19vh;
+            box-shadow: 26vmin 0 3.3631401937783956vmin currentColor;
+        }
+
+        .background span:nth-child(21) {
+            color: #ffacac;
+            top: 31%;
+            left: 32%;
+            animation-duration: 78s;
+            animation-delay: -115s;
+            transform-origin: -19vw 8vh;
+            box-shadow: -26vmin 0 4.127393048592702vmin currentColor;
+        }
+
+        .background span:nth-child(22) {
+            color: #e45a84;
+            top: 22%;
+            left: 48%;
+            animation-duration: 58s;
+            animation-delay: -101s;
+            transform-origin: 0vw 3vh;
+            box-shadow: 26vmin 0 3.3360108465630356vmin currentColor;
+        }
+
+        .background span:nth-child(23) {
+            color: #583c87;
+            top: 70%;
+            left: 20%;
+            animation-duration: 10s;
+            animation-delay: -15s;
+            transform-origin: -6vw -9vh;
+            box-shadow: 26vmin 0 4.196583852959739vmin currentColor;
+        }
+
+        .background span:nth-child(24) {
+            color: #583c87;
+            top: 35%;
+            left: 58%;
+            animation-duration: 33s;
+            animation-delay: -67s;
+            transform-origin: 19vw 18vh;
+            box-shadow: -26vmin 0 3.457949781411065vmin currentColor;
+        }
+
+        .background span:nth-child(25) {
+            color: #ffacac;
+            top: 54%;
+            left: 45%;
+            animation-duration: 27s;
+            animation-delay: -46s;
+            transform-origin: 15vw 6vh;
+            box-shadow: -26vmin 0 4.246265016287326vmin currentColor;
+        }
+
+        .background span:nth-child(26) {
+            color: #ffacac;
+            top: 8%;
+            left: 13%;
+            animation-duration: 157s;
+            animation-delay: -72s;
+            transform-origin: -18vw 23vh;
+            box-shadow: -26vmin 0 3.6767524175091846vmin currentColor;
+        }
+
+        .background span:nth-child(27) {
+            color: #583c87;
+            top: 2%;
+            left: 66%;
+            animation-duration: 57s;
+            animation-delay: -7s;
+            transform-origin: 5vw 12vh;
+            box-shadow: 26vmin 0 3.5023886473637162vmin currentColor;
+        }
+
+        .background span:nth-child(28) {
+            color: #ffacac;
+            top: 33%;
+            left: 65%;
+            animation-duration: 97s;
+            animation-delay: -33s;
+            transform-origin: 9vw 19vh;
+            box-shadow: 26vmin 0 3.673553122601467vmin currentColor;
+        }
+
+        .background span:nth-child(29) {
+            color: #ffacac;
+            top: 70%;
+            left: 88%;
+            animation-duration: 120s;
+            animation-delay: -13s;
+            transform-origin: -15vw 21vh;
+            box-shadow: 26vmin 0 3.4521185623337334vmin currentColor;
+        }
+
+        .background span:nth-child(30) {
+            color: #583c87;
+            top: 37%;
+            left: 29%;
+            animation-duration: 143s;
+            animation-delay: -94s;
+            transform-origin: 21vw 24vh;
+            box-shadow: 26vmin 0 4.236356368831305vmin currentColor;
+        }
+
+        .background span:nth-child(31) {
+            color: #ffacac;
+            top: 87%;
+            left: 32%;
+            animation-duration: 73s;
+            animation-delay: -14s;
+            transform-origin: 21vw -4vh;
+            box-shadow: -26vmin 0 3.485280358700613vmin currentColor;
+        }
+
+        .background span:nth-child(32) {
+            color: #e45a84;
+            top: 42%;
+            left: 53%;
+            animation-duration: 123s;
+            animation-delay: -124s;
+            transform-origin: -8vw -9vh;
+            box-shadow: 26vmin 0 3.9824245734120187vmin currentColor;
+        }
+
+        .background span:nth-child(33) {
+            color: #583c87;
+            top: 69%;
+            left: 45%;
+            animation-duration: 115s;
+            animation-delay: -123s;
+            transform-origin: 16vw 10vh;
+            box-shadow: 26vmin 0 4.128756955244502vmin currentColor;
+        }
+
+        .background span:nth-child(34) {
+            color: #e45a84;
+            top: 39%;
+            left: 2%;
+            animation-duration: 150s;
+            animation-delay: -121s;
+            transform-origin: 8vw 23vh;
+            box-shadow: -26vmin 0 3.7913412889138987vmin currentColor;
+        }
+
+        .background span:nth-child(35) {
+            color: #583c87;
+            top: 5%;
+            left: 37%;
+            animation-duration: 103s;
+            animation-delay: -54s;
+            transform-origin: -10vw -22vh;
+            box-shadow: 26vmin 0 4.067585538069467vmin currentColor;
+        }
+
+        .background span:nth-child(36) {
+            color: #ffacac;
+            top: 84%;
+            left: 20%;
+            animation-duration: 45s;
+            animation-delay: -24s;
+            transform-origin: -3vw -15vh;
+            box-shadow: -26vmin 0 4.116398872214835vmin currentColor;
+        }
+
+        .background span:nth-child(37) {
+            color: #e45a84;
+            top: 55%;
+            left: 11%;
+            animation-duration: 98s;
+            animation-delay: -8s;
+            transform-origin: -22vw 10vh;
+            box-shadow: -26vmin 0 3.665154670101489vmin currentColor;
+        }
+
+        .background span:nth-child(38) {
+            color: #ffacac;
+            top: 64%;
+            left: 82%;
+            animation-duration: 137s;
+            animation-delay: -24s;
+            transform-origin: -12vw -19vh;
+            box-shadow: -26vmin 0 4.10954779618472vmin currentColor;
+        }
+
+        .background span:nth-child(39) {
+            color: #ffacac;
+            top: 82%;
+            left: 98%;
+            animation-duration: 25s;
+            animation-delay: -94s;
+            transform-origin: -9vw 13vh;
+            box-shadow: 26vmin 0 3.443428620588733vmin currentColor;
+        }
+
+        .background span:nth-child(40) {
+            color: #583c87;
+            top: 58%;
+            left: 65%;
+            animation-duration: 126s;
+            animation-delay: -8s;
+            transform-origin: 0vw 23vh;
+            box-shadow: -26vmin 0 3.6865612156399514vmin currentColor;
+        }
+
+        .background span:nth-child(41) {
+            color: #583c87;
+            top: 85%;
+            left: 60%;
+            animation-duration: 59s;
+            animation-delay: -156s;
+            transform-origin: -3vw 11vh;
+            box-shadow: -26vmin 0 3.452773204187578vmin currentColor;
+        }
+
+        .background span:nth-child(42) {
+            color: #e45a84;
+            top: 72%;
+            left: 13%;
+            animation-duration: 99s;
+            animation-delay: -143s;
+            transform-origin: 4vw 23vh;
+            box-shadow: 26vmin 0 4.132829129919619vmin currentColor;
+        }
+    </style>
+</head>
+
+<body>
+    <header style="color: #203A43; text-align: center;">
+        <h2>MUDA-MIDIコーナー</h2>
+        <h4>いったい何の意味があるのか？ でもJSと仲良くなるために人生に無駄なことなどありません。<br>
+            （注：むだにMIDIキーボートを置いていますが、音が無機質なので癒されることは絶対にありません）</h2>
+        </h4>
+
+        <button id="playButton_calm">エヴァOP再生</button>
+        <button id="stopButton2">停止</button>
+
+        <button id="playButton" style="margin-left: 50px;">発狂モード再生</button>
+        <button id="stopButton">停止!!</button>
+    </header>
+
+
+    <div class="piano">
+        <ul>
+            <li><span id="c3" class="wk" onclick="playSound('c3')"></span></li>
+            <li>
+                <span id="d3" class="wk" onclick="playSound('d3')"></span>
+                <span id="cs3" class="bk" onclick="playSound('c#3')"></span>
+            </li>
+            <li>
+                <span id="e3" class="wk" onclick="playSound('e3')"></span>
+                <span id="ds3" class="bk" onclick="playSound('d#3')"></span>
+            </li>
+            <li><span id="f3" class="wk" onclick="playSound('f3')"></span></li>
+            <li>
+                <span id="g3" class="wk" onclick="playSound('g3')"></span>
+                <span id="fs3" class="bk" onclick="playSound('f#3')"></span>
+            </li>
+            <li>
+                <span id="a3" class="wk" onclick="playSound('a3')">
+                </span><span id="gs3" class="bk" onclick="playSound('g#3')"></span>
+            </li>
+            <li>
+                <span id="b3" class="wk" onclick="playSound('b3')"></span>
+                <span id="as3" class="bk" onclick="playSound('a#3')"></span>
+            </li>
+            <!--  -->
+            <li><span id="c4" class="wk" onclick="playSound('c4')"></span></li>
+            <li>
+                <span id="d4" class="wk" onclick="playSound('d4')"></span>
+                <span id="cs4" class="bk" onclick="playSound('c#4')"></span>
+            </li>
+            <li>
+                <span id="e4" class="wk" onclick="playSound('e4')"></span>
+                <span id="ds4" class="bk" onclick="playSound('d#4')"></span>
+            </li>
+            <li><span id="f4" class="wk" onclick="playSound('f4')"></span></li>
+            <li>
+                <span id="g4" class="wk" onclick="playSound('g4')"></span>
+                <span id="fs4" class="bk" onclick="playSound('f#4')"></span>
+            </li>
+            <li>
+                <span id="a4" class="wk" onclick="playSound('a4')">
+                </span><span id="gs4" class="bk" onclick="playSound('g#4')"></span>
+            </li>
+            <li>
+                <span id="b4" class="wk" onclick="playSound('b4')"></span>
+                <span id="as4" class="bk" onclick="playSound('a#4')"></span>
+            </li>
+            <!--  -->
+            <li><span id="c5" class="wk" onclick="playSound('c5')"></span></li>
+            <li>
+                <span id="d5" class="wk" onclick="playSound('d5')"></span>
+                <span id="cs5" class="bk" onclick="playSound('c#5')"></span>
+            </li>
+            <li>
+                <span id="e5" class="wk" onclick="playSound('e5')"></span>
+                <span id="ds5" class="bk" onclick="playSound('d#5')"></span>
+            </li>
+            <li><span id="f5" class="wk" onclick="playSound('f5')"></span></li>
+            <li>
+                <span id="g5" class="wk" onclick="playSound('g5')"></span>
+                <span id="fs5" class="bk" onclick="playSound('f#5')"></span>
+            </li>
+            <li>
+                <span id="a5" class="wk" onclick="playSound('a5')">
+                </span><span id="gs5" class="bk" onclick="playSound('g#5')"></span>
+            </li>
+            <li>
+                <span id="b5" class="wk" onclick="playSound('b5')"></span>
+                <span id="as5" class="bk" onclick="playSound('a#5')"></span>
+            </li>
+            <!--  -->
+        </ul>
+    </div>
+    </div>
+    <script src="http://unpkg.com/tone"></script>
+    <script>
+        document.getElementById("playButton_calm").addEventListener("click", () => {
+            const synth = new Tone.Synth().toDestination();
+            Tone.Transport.bpm.value = 160;
+            Tone.Transport.timeSignature = [4, 4];
+            // Tone.Transport.start();
+            const now = Tone.now();
+            synth.triggerAttackRelease("B3", "16n");
+            synth.triggerAttackRelease("D4", "16n", now + 1);
+            synth.triggerAttackRelease("E4", "32n", now + 2);
+            synth.triggerAttackRelease("D4", "32n", now + 2.75);
+            synth.triggerAttackRelease("E4", "32n", now + 3.5);
+            synth.triggerAttackRelease("E4", "32n", now + 4);
+            synth.triggerAttackRelease("E4", "32n", now + 4.5);
+            synth.triggerAttackRelease("A4", "32n", now + 5);
+            synth.triggerAttackRelease("G4", "32n", now + 5.5);
+            synth.triggerAttackRelease("F#4", "32n", now + 6);
+            synth.triggerAttackRelease("E4", "32n", now + 6.25);
+            synth.triggerAttackRelease("F#4", "16n", now + 6.75);
+            synth.triggerAttackRelease("F#4", "16n", now + 8);
+            synth.triggerAttackRelease("A4", "16n", now + 9);
+            synth.triggerAttackRelease("B4", "32n", now + 10);
+            synth.triggerAttackRelease("E4", "32n", now + 10.75);
+            synth.triggerAttackRelease("D4", "32n", now + 11.5);
+            synth.triggerAttackRelease("A4", "32n", now + 12);
+            synth.triggerAttackRelease("A4", "32n", now + 12.5);
+            synth.triggerAttackRelease("F#4", "32n", now + 13);
+            synth.triggerAttackRelease("A4", "32n", now + 13.5);
+            // synth.triggerAttackRelease("A4", "16n", now + 13);
+            synth.triggerAttackRelease("A4", "16n", now + 14);
+            synth.triggerAttackRelease("B4", "4n", now + 14.75);
+        });
+
+        document.getElementById("stopButton2").addEventListener("click", () => {
+            console.log(10);
+            Tone.Transport.pause();
+        }
+        );
+
+        // ここからAPI
+        const synth = new Tone.Synth().toDestination();
+        function playSound(note) {
+            synth.triggerAttackRelease(note, "4n");
+        }
+        function hakkyou() {
+            fetch("https://raw.githubusercontent.com/bakkyalo/mypage/refs/heads/master/json/mondschein3.json")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // ここに data (json) を使った処理を書く
+                    const part = new Tone.Part((time, note) => {
+                        synth.triggerAttackRelease(note.note, note.duration, time);
+                    },
+                        data.rightHandScore).start();
+
+                    Tone.Transport.start();
+                    console.log(0);
+
+                    const part2 = new Tone.Part((time, note) => {
+                        synth.triggerAttackRelease(note.note, note.duration, time);
+                    },
+                        data.leftHandScore).start();
+
+                    Tone.Transport.start();
+                    console.log(1);
+
+                })
+                .catch(error => {
+                    console.error("Fetch Error: ", error);
+                });
+        }
+        document.getElementById("playButton").addEventListener("click", () => {
+            hakkyou();
+        });
+        document.getElementById("stopButton").addEventListener("click", () => {
+            Tone.Transport.pause();
+        }
+        );
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- hitotutarinai -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/style.css">
+    <title>MadiApp</title>
+</head>
+
+<body>
+    <div class="containtsWrapper">
+        <header class="header">
+            <div class="headerInner">
+                <div class="hamMenu">
+
+                    <input type="checkbox" name="menu_btn_check" id="menu_btn_check">
+                    <label for="menu_btn_check" class="menu_btn"><span></span></label>
+                </div>
+                <h2>OKAMPANY</h2>
+                <div>
+
+                    <nav class="menuNav" id="#" style="display: none;">
+                        <ul class="floatList">
+                            <li class="q1"><a href="aboutIndex.html">ABOUT</a>
+                                <span class="push">▼</span>
+                            </li>
+                            <div class="a1">
+                                <div class="aboutPush">
+                                    <div class="video">
+                                        <video controls src="video/beach_shell_washedUpOnTheShore.MP4" autoplay muted
+                                            loop></video>
+                                    </div>
+                                    <div class="answer-text">
+                                        <h3>JSお兄さんに立ち向かいたいけど癒されたい。そんなオカンパニーです<br>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <li class="q2"><a href="todoIndex.html ">NotToDo</a></li>
+                            <li><a href="MudaMidiIndex.html">MudaMidi</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- 対比 -->
+            </div>
+        </header>
+    </div>
+
+    </header>
+
+    <div class="app">
+        <div class="vid-container">
+            <video loop>
+                <source src="video/rain.mp4" type="video/mp4">
+                <source src="video/beach.mp4" type="video/mp4">
+
+            </video>
+
+        </div>
+        <div class="time-select">
+            <button data-times="120">2 Minutes</button>
+            <button data-times="300">5 Minutes</button>
+            <button data-times="600">10 Minutes</button>
+        </div>
+
+        <div class="player-container">
+            <audio class="song" id="audioTarget">
+                <source src="sounds/rain.mp3">
+            </audio>
+            <img src="svg/play.svg" alt="play" class="play">
+            <svg class="track-outline" width="453" height="453" viewBox="0 0 453 453" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <circle cx="226.5" cy="226.5" r="216.5" stroke="white" stroke-width="20" />
+            </svg>
+            <svg class="moving-outline" width="453" height="453" viewBox="0 0 453 453" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <circle cx="226.5" cy="226.5" r="216.5" stroke="#018EBA" stroke-width="20" />
+            </svg>
+            <h3 class="time-display">0:00</h3>
+        </div>
+        <div class="sound-picker">
+            <button data-sounds="sounds/rain.mp3" data-video="video/rain.mp4"><img src="svg/rain.svg"
+                    alt="rain"></button>
+
+            <button data-sounds="sounds/beach.mp3" data-video="video/beach.mp4"><img src="svg/beach.svg"
+                    alt="beach"></button>
+
+        </div>
+    </div>
+
+    </div>
+
+    <script src="appCopy.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript">
+        $(function () {
+            $('.menu_btn').on('click', function () {　　// .btn
+                $('.menuNav').toggleClass('open');　　// クラスが追加される
+                $('nav').fadeToggle(500);　　// navの表示・非表示切り替え
+            });
+        });
+
+        // 
+        $(".a1").hide();
+
+        $(".q1").click(function () {
+            $(".a1").toggle(50);
+        })
+
+    </script>
+
+</body>
+
+</html>
