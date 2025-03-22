@@ -18,18 +18,19 @@ timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:${Math.floor(
   fakeDuration % 60
 )}`;
 
-document.addEventListener('DOMContentLoaded', () => {
-  const menuToggle = document.querySelector('.menu-toggle');
-  const menuIcon = document.querySelector('.menu-icon');
-  const closeIcon = document.querySelector('.close-icon');
-  const navLinks = document.querySelector('.nav-links');
+// ↓jQueryからの書き換えテスト不備あり
+// document.addEventListener('DOMContentLoaded', () => {
+//   const menuToggle = document.querySelector('.menu-toggle');
+//   const menuIcon = document.querySelector('.menu-icon');
+//   const closeIcon = document.querySelector('.close-icon');
+//   const navLinks = document.querySelector('.nav-links');
 
-  menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      menuIcon.style.display = menuIcon.style.display === 'none' ? 'block' : 'none';
-      closeIcon.style.display = closeIcon.style.display === 'none' ? 'block' : 'none';
-  });
-});
+//   menuToggle.addEventListener('click', () => {
+//       navLinks.classList.toggle('active');
+//       menuIcon.style.display = menuIcon.style.display === 'none' ? 'block' : 'none';
+//       closeIcon.style.display = closeIcon.style.display === 'none' ? 'block' : 'none';
+//   });
+// });
 
 sounds.forEach(sound => {
   sound.addEventListener("click", function() {
