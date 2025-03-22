@@ -69,6 +69,10 @@
   left: 0px;
 }
 
+.menuNav.open {
+  display: block;
+}
+
 .q1 {
   border-bottom: 1px solid #bb8b8b;
 }
@@ -92,26 +96,7 @@
 
 }
 
-/* .gnavList {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  list-style: none;
-  text-decoration: none;
-}
 
-.gnavList li {
-  padding-left: 10px;
-  padding-right: 20px;
-}
-
-.gnavList a {
-  cursor: pointer;
-  text-decoration: none;
-  color: #fff;
-
-} */
 .menu_btn {
   position: fixed;
   top: 0px;
@@ -123,6 +108,7 @@
   align-items: center;
   z-index: 90;
   background-color: #4d4645;
+  cursor: pointer;
 }
 
 .menu_btn span,

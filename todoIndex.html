@@ -16,12 +16,12 @@
         </div>
 
         <div id="needToDoArea">
-            <p class="title">やらないことリストのすすめ</p>
+            <p class="title">やらないことリスト一覧</p>
             <ul id="needToDo_list">
             </ul>
         </div>
         <div id="doneArea">
-            <p class="title">代わりに得たものを思い浮かべよう〜</p>
+            <p class="title">足し算では得られない、君のアイデンティティ！</p>
             <ul id="done_list">
             </ul>
         </div>
@@ -46,7 +46,7 @@
 
             // 1完了ボタン生成
             const doneButton = document.createElement("button")
-            doneButton.innerHTML = "できた";
+            doneButton.innerHTML = "つらぬいた";
             doneButton.addEventListener("click", () => {
                 const moveTarget = doneButton.closest("li");
                 doneButton.nextElementSibling.remove();
